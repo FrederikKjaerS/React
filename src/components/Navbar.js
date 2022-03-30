@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./Button";
 import { Link } from "react-router-dom";
-import "../components/NavBar.css";
+import "./NavBar.css";
 
 function NavBar() {
   const [click, setClick] = useState(false);
@@ -25,7 +25,7 @@ function NavBar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo">
-            Kongen <i className="fab fa-typo3"></i>
+            Siden <i className="fab fa-typo3"></i>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
