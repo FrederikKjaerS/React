@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import Home from "./components/Pages/Home"
 import Joke from "./components/Pages/Joke"
 
@@ -12,7 +12,8 @@ function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path="/" exact component={Home} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Joke/>} />
         </Routes>
         </Router>
 
