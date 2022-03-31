@@ -1,5 +1,6 @@
 import "../../App.css";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
+import Button from '@mui/material/Button';
 import "./Joke.css";
 
 function Joke() {
@@ -16,7 +17,6 @@ function Joke() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
         setInsult(response.data);
       })
       .catch(function (error) {
@@ -24,10 +24,16 @@ function Joke() {
       });
   }
 
+  const sub = ()=> {
+    console.log("hej");
+
+  }
+
   return (
     <>
       <h1>Hello, {insult}!</h1>
-      <button className="btn" onClick={newInsult}>INSULT</button>
+      <Button color="secondary" onClick={newInsult} variant="contained">INSULT</Button>
+
     </>
   );
 }
