@@ -1,4 +1,5 @@
 import React from "react";
+
 import Navbar from "./components/NavBar";
 import Home from "./components/Pages/Home"
 import Joke from "./components/Pages/Joke"
@@ -6,6 +7,8 @@ import Food from "./components/Pages/Food"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+
+
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
           <Route path="/joke" element={<Joke/>} />
           <Route path="/food" element={<Food/>} />
         </Routes>
+        <button>hej</button>
         </Router>
     </>
   );
