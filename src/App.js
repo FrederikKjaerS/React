@@ -20,7 +20,6 @@ function App() {
           <Route path="/joke" element={<Joke/>} />
           <Route path="/food" element={<Food/>} />
         </Routes>
-        <button>hej</button>
         </Router>
     </>
   );
