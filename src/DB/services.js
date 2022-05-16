@@ -30,7 +30,7 @@ class DbService {
 
   addImage = (newImage) => {
     const name = newImage.name;
-    const storageRef = ref(storage, "images/" + name);
+    const storageRef = ref(storage, "recipeImages/" + name);
     uploadBytes(storageRef, newImage).then((snapshot) => {
       console.log("Uploaded to storage");
     });

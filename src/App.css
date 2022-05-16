@@ -49,3 +49,11 @@
   grid-template-areas: 
     ". ."; 
 }
+
+.recipeImg{
+  position: absolute;
+  background-color: aqua;
+width: 20%;
+height: 20%;
+  bottom: 40%
+}
