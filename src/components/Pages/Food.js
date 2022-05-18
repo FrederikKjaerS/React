@@ -1,13 +1,47 @@
 import "../../App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DbService from "../../DB/services";
 
 function Food() {
+  let results = [];
   const [mealOfTheDay, setMealOfTheDay] = useState("");
   const [recipename, setRecipeName] = useState("");
   const [recipeImg, setRecipeImg] = useState("");
   const [link, setLink] = useState("");
   const [category, setCategory] = useState("");
+  const [recipes, setRecipes] = useState();
+  const [imgUrl, setImgUrl] = useState("");
+
+  // use the request-promise library to fetch the HTML from pokemon.org
+
+  useEffect(() => {
+    async function getRecipes() {
+      await DbService.getAllRecipes().then((result) => (results = result));
+      setRecipes(results);
+    }
+    getRecipes();
+  }, []);
+
+  useEffect(() => {
+    console.log(mealOfTheDay);
+    DbService.downloadImage(mealOfTheDay["img"])
+      .then((result) => {
+        console.log(result);
+        setImgUrl(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [mealOfTheDay]);
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  function randomRecipe() {
+    let meal = recipes[getRandomInt(recipes.length)];
+    setMealOfTheDay(meal);
+  }
 
   function upload() {
     const newItem = {
@@ -81,8 +115,33 @@ function Food() {
             </button>
           </div>
           <div>
-            <p>What's for dinner?</p>
-            <button>Click here</button>
+            <div className="mealOfTheDay">
+              <p>What's for dinner?</p>
+              <button
+                onClick={() => {
+                  randomRecipe();
+                }}
+              >
+                Click here
+              </button>
+              <h2>{mealOfTheDay.name}</h2>
+              <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
+                <img
+                  className="foodImg"
+                  alt="item"
+                  src={imgUrl === "" ? null : imgUrl}
+                />
+              </a>
+            </div>
+            <div className="listOfRecipes">
+              {recipes?.map((value, index) => {
+                return (
+                  <p>
+                    {value.name} <a href={value.link}>Link</a>
+                  </p>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

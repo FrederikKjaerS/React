@@ -20,10 +20,6 @@ const { db } = require("./firebase-config");
 const collectionRef = collection(db, "ingredients");
 
 class DbService {
-  addIngredient = (newIngredient) => {
-    return addDoc(collectionRef, newIngredient);
-  };
-
   addRecipe = (newItem) => {
     return addDoc(collection(db, "recipes"), newItem);
   };
@@ -40,24 +36,14 @@ class DbService {
     return await getDownloadURL(ref(storage, path));
   };
 
-  getAllIngredients = async () => {
-    const querySnapshot = await getDocs(collection(db, "ingredients"));
-    let ingredients = [];
+  getAllRecipes = async () => {
+    const querySnapshot = await getDocs(collection(db, "recipes"));
+    let recipes = [];
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      ingredients.push(doc.data());
+      recipes.push(doc.data());
     });
-    return ingredients;
-  };
-
-  getAllItems = async () => {
-    const querySnapshot = await getDocs(collection(db, "items"));
-    let items = [];
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      items.push(doc.data());
-    });
-    return items;
+    return recipes;
   };
 }
 
