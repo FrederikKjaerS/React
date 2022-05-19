@@ -16,18 +16,17 @@ function Food() {
   // use the request-promise library to fetch the HTML from pokemon.org
 
   useEffect(() => {
-    async function getRecipes() {
-      await DbService.getAllRecipes().then((result) => (results = result));
-      setRecipes(results);
-    }
     getRecipes();
   }, []);
 
+  async function getRecipes() {
+    await DbService.getAllRecipes().then((result) => (results = result));
+    setRecipes(results);
+  }
+
   useEffect(() => {
-    console.log(mealOfTheDay);
     DbService.downloadImage(mealOfTheDay["img"])
       .then((result) => {
-        console.log(result);
         setImgUrl(result);
       })
       .catch((err) => {
@@ -43,16 +42,28 @@ function Food() {
     let meal = recipes[getRandomInt(recipes.length)];
     setMealOfTheDay(meal);
   }
+  function resetStates() {
+    setCategory("");
+    setRecipeImg("");
+    setRecipeName("");
+    setLink("");
+  }
 
-  function upload() {
-    const newItem = {
-      name: recipename,
-      link: link,
-      img: "recipeImages/" + recipeImg.name,
-      category: category,
-    };
-    DbService.addImage(recipeImg);
-    DbService.addRecipe(newItem);
+  async function upload() {
+    if (recipename === "" || recipeImg === "" || category === "") {
+      alert("Please fill out everything");
+    } else {
+      const newItem = {
+        name: recipename,
+        link: link,
+        img: "recipeImages/" + recipeImg.name,
+        category: category,
+      };
+      DbService.addImage(recipeImg);
+      DbService.addRecipe(newItem);
+      await getRecipes();
+    }
+    resetStates();
   }
 
   const setImage = async (event) => {
@@ -68,6 +79,7 @@ function Food() {
             <span>
               <p className="color">Recipe Name</p>
               <input
+                value={recipename}
                 onChange={(e) => {
                   setRecipeName(e.target.value);
                 }}
@@ -76,6 +88,7 @@ function Food() {
             </span>
             <p>Upload Image</p>
             <input
+              value={recipeImg}
               type="file"
               name="file"
               placeholder="Upload an image"
@@ -84,6 +97,7 @@ function Food() {
             <span>
               <p className="color">Link</p>
               <input
+                value={link}
                 onChange={(e) => {
                   setLink(e.target.value);
                 }}
@@ -98,6 +112,7 @@ function Food() {
 
             <p>Kategori:</p>
             <select
+              value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
@@ -135,6 +150,7 @@ function Food() {
               </a>
             </div>
             <button
+              className="showAll"
               onClick={() => {
                 setOpenRecipes(!openRecipes);
               }}
@@ -145,7 +161,7 @@ function Food() {
               <div className="listOfRecipes">
                 {recipes?.map((value, index) => {
                   return (
-                    <a href={value.link}>
+                    <a key={index} href={value.link}>
                       <p>{value.name}</p>
                     </a>
                   );
