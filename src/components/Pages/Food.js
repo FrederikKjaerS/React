@@ -11,6 +11,7 @@ function Food() {
   const [category, setCategory] = useState("");
   const [recipes, setRecipes] = useState();
   const [imgUrl, setImgUrl] = useState("");
+  const [openRecipes, setOpenRecipes] = useState(false);
 
   // use the request-promise library to fetch the HTML from pokemon.org
 
@@ -133,14 +134,23 @@ function Food() {
                 />
               </a>
             </div>
-            <div className="listOfRecipes">
-              {recipes?.map((value, index) => {
-                return (
-                  <p>
-                    {value.name} <a href={value.link}>Link</a>
-                  </p>
-                );
-              })}
+            <button
+              onClick={() => {
+                setOpenRecipes(!openRecipes);
+              }}
+            >
+              Show All Recipes
+            </button>
+            <div className={openRecipes ? "editWindow" : "notVisible"}>
+              <div className="listOfRecipes">
+                {recipes?.map((value, index) => {
+                  return (
+                    <a href={value.link}>
+                      <p>{value.name}</p>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
