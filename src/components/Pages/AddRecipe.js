@@ -79,7 +79,7 @@ function AddRecipe() {
             <img
               src={recipeImg === "" ? null : URL.createObjectURL(recipeImg)}
               alt="item"
-              className="recipeImg"
+              className={recipeImg === "" ? "invisible" : "recipeImg"}
             />
 
             <p>Kategori:</p>
@@ -102,7 +102,7 @@ function AddRecipe() {
               Add
             </button>
             <Link to="/Food">
-              <button>Go back</button>
+              <button className="addLinkButton">Go back</button>
             </Link>
           </div>
         </div>

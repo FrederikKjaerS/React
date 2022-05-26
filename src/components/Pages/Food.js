@@ -14,6 +14,7 @@ function Food() {
   const [recipes, setRecipes] = useState();
   const [imgUrl, setImgUrl] = useState("");
   const [openRecipes, setOpenRecipes] = useState(false);
+  const [openRecipesText, setOpenRecipesText] = useState("Show all recipes");
 
   // use the request-promise library to fetch the HTML from pokemon.org
 
@@ -39,14 +40,6 @@ function Food() {
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
-  function hej() {
-    $.ajax({
-      url: "https://crossorigin.me/https://www.valdemarsro.dk/one-pot-pasta/",
-      success: function (data) {
-        console.log(data);
-      },
-    });
-  }
 
   function randomRecipe() {
     let meal = recipes[getRandomInt(recipes.length)];
@@ -59,36 +52,15 @@ function Food() {
     setLink("");
   }
 
-  async function upload() {
-    if (recipename === "" || recipeImg === "" || category === "") {
-      alert("Please fill out everything");
-    } else {
-      const newItem = {
-        name: recipename,
-        link: link,
-        img: "recipeImages/" + recipeImg.name,
-        category: category,
-      };
-      DbService.addImage(recipeImg);
-      DbService.addRecipe(newItem);
-      await getRecipes();
-    }
-    resetStates();
-  }
-
-  const setImage = async (event) => {
-    const file = event.target.files[0];
-    setRecipeImg(file);
-  };
-
   return (
     <>
       <div className="content">
         <div className="foodContainer">
           <div>
             <div className="mealOfTheDay">
-              <p>What's for dinner?</p>
+              <h1>What's for dinner?</h1>
               <button
+                className="dinnerButton"
                 onClick={() => {
                   randomRecipe();
                 }}
@@ -98,7 +70,7 @@ function Food() {
               <h2>{mealOfTheDay.name}</h2>
               <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
                 <img
-                  className="foodImg"
+                  className={mealOfTheDay === "" ? "invisible" : "foodImg"}
                   alt="item"
                   src={imgUrl === "" ? null : imgUrl}
                 />
@@ -108,9 +80,14 @@ function Food() {
               className="showAll"
               onClick={() => {
                 setOpenRecipes(!openRecipes);
+                if (!openRecipes) {
+                  setOpenRecipesText("Hide all recipes");
+                } else {
+                  setOpenRecipesText("Show all recipes");
+                }
               }}
             >
-              Show All Recipes
+              {openRecipesText}
             </button>
             <div className={openRecipes ? "editWindow" : "notVisible"}>
               <div className="listOfRecipes">
@@ -124,13 +101,7 @@ function Food() {
               </div>
             </div>
             <Link to="/addRecipe">
-              <button
-                onClick={() => {
-                  hej();
-                }}
-              >
-                Add recipe
-              </button>
+              <button className="addLinkButton">Add recipe</button>
             </Link>
           </div>
         </div>
