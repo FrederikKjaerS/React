@@ -2,6 +2,7 @@ import "../../App.css";
 import React, { useState, useEffect } from "react";
 import DbService from "../../DB/services";
 import { Link } from "react-router-dom";
+import $ from "jquery";
 
 function Food() {
   let results = [];
@@ -37,6 +38,14 @@ function Food() {
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
+  }
+  function hej() {
+    $.ajax({
+      url: "https://crossorigin.me/https://www.valdemarsro.dk/one-pot-pasta/",
+      success: function (data) {
+        console.log(data);
+      },
+    });
   }
 
   function randomRecipe() {
@@ -115,7 +124,13 @@ function Food() {
               </div>
             </div>
             <Link to="/addRecipe">
-              <button>Add recipe</button>
+              <button
+                onClick={() => {
+                  hej();
+                }}
+              >
+                Add recipe
+              </button>
             </Link>
           </div>
         </div>
