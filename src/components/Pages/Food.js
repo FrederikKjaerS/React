@@ -1,6 +1,7 @@
 import "../../App.css";
 import React, { useState, useEffect } from "react";
 import DbService from "../../DB/services";
+import { Link } from "react-router-dom";
 
 function Food() {
   let results = [];
@@ -41,6 +42,7 @@ function Food() {
   function randomRecipe() {
     let meal = recipes[getRandomInt(recipes.length)];
     setMealOfTheDay(meal);
+    DbService.createUser("kim", "hej");
   }
   function resetStates() {
     setCategory("");
@@ -75,61 +77,6 @@ function Food() {
     <>
       <div className="content">
         <div className="foodContainer">
-          <div>
-            <span>
-              <p className="color">Recipe Name</p>
-              <input
-                value={recipename}
-                onChange={(e) => {
-                  setRecipeName(e.target.value);
-                }}
-                type="text"
-              />
-            </span>
-            <p>Upload Image</p>
-            <input
-              value={recipeImg}
-              type="file"
-              name="file"
-              placeholder="Upload an image"
-              onChange={setImage}
-            />
-            <span>
-              <p className="color">Link</p>
-              <input
-                value={link}
-                onChange={(e) => {
-                  setLink(e.target.value);
-                }}
-                type="text"
-              />
-            </span>
-            <img
-              src={recipeImg === "" ? null : URL.createObjectURL(recipeImg)}
-              alt="item"
-              className="recipeImg"
-            />
-
-            <p>Kategori:</p>
-            <select
-              value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}
-            >
-              <option value="">Vælg...</option>
-              <option value="Forret">Forret</option>
-              <option value="Hovedret">Hovedret</option>
-              <option value="Dessert">Dessert</option>
-            </select>
-            <button
-              onClick={() => {
-                upload();
-              }}
-            >
-              Add
-            </button>
-          </div>
           <div>
             <div className="mealOfTheDay">
               <p>What's for dinner?</p>
@@ -168,6 +115,9 @@ function Food() {
                 })}
               </div>
             </div>
+            <Link to="/addRecipe">
+              <button>Add recipe</button>
+            </Link>
           </div>
         </div>
       </div>

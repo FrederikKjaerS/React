@@ -41,13 +41,7 @@
 }
 
 .foodContainer {
-  display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 1fr; 
-  gap: 0px 0px; 
-  grid-template-areas: 
-    ". ."; 
+  text-align: center;
 }
 
 .notVisible{
@@ -96,8 +90,8 @@ height: 20%;
 }
 
 .foodImg{
-  width: 79%;
-  height: 80%;
-  margin-top: 1vw;
-  object-fit: contain;
+  position: relative;
+    text-align: center;
+    /* width: 100%; */
+    height: 50vh;
 }
