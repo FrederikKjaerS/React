@@ -42,7 +42,6 @@ function Food() {
   function randomRecipe() {
     let meal = recipes[getRandomInt(recipes.length)];
     setMealOfTheDay(meal);
-    DbService.createUser("kim", "hej");
   }
   function resetStates() {
     setCategory("");
