@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import DbService from "../../DB/services";
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import Button from "@mui/material/Button";
 
 function Food() {
   let results = [];
@@ -45,12 +46,6 @@ function Food() {
     let meal = recipes[getRandomInt(recipes.length)];
     setMealOfTheDay(meal);
   }
-  function resetStates() {
-    setCategory("");
-    setRecipeImg("");
-    setRecipeName("");
-    setLink("");
-  }
 
   return (
     <>
@@ -59,14 +54,14 @@ function Food() {
           <div>
             <div className="mealOfTheDay">
               <h1>What's for dinner?</h1>
-              <button
-                className="dinnerButton"
+              <Button
+                variant="contained"
                 onClick={() => {
                   randomRecipe();
                 }}
               >
                 Click here
-              </button>
+              </Button>
               <h2>{mealOfTheDay.name}</h2>
               <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
                 <img
@@ -76,7 +71,11 @@ function Food() {
                 />
               </a>
             </div>
-            <button
+            <Button
+              sx={{
+                position: "absolute",
+              }}
+              variant="outlined"
               className="showAll"
               onClick={() => {
                 setOpenRecipes(!openRecipes);
@@ -88,7 +87,7 @@ function Food() {
               }}
             >
               {openRecipesText}
-            </button>
+            </Button>
             <div className={openRecipes ? "editWindow" : "notVisible"}>
               <div className="listOfRecipes">
                 {recipes?.map((value, index) => {
@@ -100,8 +99,16 @@ function Food() {
                 })}
               </div>
             </div>
-            <Link to="/addRecipe">
-              <button className="addLinkButton">Add recipe</button>
+            <Link to="/signIn">
+              <Button
+                sx={{
+                  position: "absolute",
+                }}
+                variant="outlined"
+                className="addLinkButton"
+              >
+                Add recipe
+              </Button>
             </Link>
           </div>
         </div>

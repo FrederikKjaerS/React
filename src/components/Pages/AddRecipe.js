@@ -4,15 +4,10 @@ import DbService from "../../DB/services";
 import { Link } from "react-router-dom";
 
 function AddRecipe() {
-  let results = [];
-  const [mealOfTheDay, setMealOfTheDay] = useState("");
   const [recipename, setRecipeName] = useState("");
   const [recipeImg, setRecipeImg] = useState("");
   const [link, setLink] = useState("");
   const [category, setCategory] = useState("");
-  const [recipes, setRecipes] = useState();
-  const [imgUrl, setImgUrl] = useState("");
-  const [openRecipes, setOpenRecipes] = useState(false);
 
   // use the request-promise library to fetch the HTML from pokemon.org
 
