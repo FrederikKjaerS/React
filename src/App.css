@@ -49,6 +49,21 @@
   gap: 0px 0px; 
 }
 
+.addBtn{
+  position: absolute;
+  bottom: 10%;
+  right: 1%;
+}
+
+.addContainer {
+  padding: 2%;
+  text-align: center;
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-rows: 1fr 1fr ; 
+  gap: 0px 0px; 
+}
+
 h2{
   color: black;
 }
@@ -108,6 +123,7 @@ h2{
 }
 
 .foodImg{
+  padding-top: 2%;
   width: 79%;
   height: 73%;
   object-fit: contain;

@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react";
 import DbService from "../../DB/services";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { MenuItem } from "@mui/material";
 
 function AddRecipe() {
   const [recipename, setRecipeName] = useState("");
@@ -45,7 +48,7 @@ function AddRecipe() {
   return (
     <>
       <div className="content">
-        <div className="foodContainer">
+        <div className="addContainer">
           <div>
             <span>
               <p className="color">Recipe Name</p>
@@ -81,17 +84,30 @@ function AddRecipe() {
             />
 
             <p>Kategori:</p>
-            <Select
-              value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}
-            >
-              <MenuItem value="Forret">Forret</MenuItem>
-              <MenuItem value="Hovedret">Hovedret</MenuItem>
-              <MenuItem value="Dessert">Dessert</MenuItem>
-            </Select>
+            <Box>
+              <FormControl>
+                <InputLabel id="cat-label">Category</InputLabel>
+                <Select
+                  labelId="cat-label"
+                  label="Age"
+                  value={category}
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                  }}
+                >
+                  <MenuItem value="Forret">Forret</MenuItem>
+                  <MenuItem value="Hovedret">Hovedret</MenuItem>
+                  <MenuItem value="Dessert">Dessert</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
             <Button
+              sx={{
+                position: "absolute",
+                bottom: "56%",
+                right: "46.5%",
+              }}
+              variant="contained"
               onClick={() => {
                 upload();
               }}
@@ -99,7 +115,17 @@ function AddRecipe() {
               Add
             </Button>
             <Link to="/Food">
-              <Button className="addLinkButton">Go back</Button>
+              <Button
+                sx={{
+                  position: "absolute",
+                  bottom: "10%",
+                  left: "1%",
+                }}
+                variant="outlined"
+                className="addLinkButton"
+              >
+                Go back
+              </Button>
             </Link>
           </div>
         </div>
