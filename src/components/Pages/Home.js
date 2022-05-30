@@ -1,12 +1,8 @@
-import '../../App.css'
+import "../../App.css";
 import React from "react";
 
 function Home() {
-  return (
-    <>
-      Hold
-    </>
-  );
+  return <>Velkommen</>;
 }
 
 export default Home;
