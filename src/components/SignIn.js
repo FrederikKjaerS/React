@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,6 +10,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +36,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,7 +45,7 @@ export default function SignIn() {
       console.log("hej");
       navigate("/addRecipe");
     } else {
-      alert("No access");
+      setError(true);
     }
     console.log({
       email: data.get("email"),
@@ -99,6 +101,9 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <div className={error ? "" : "invisible"}>
+              <Alert severity="error">Invalid login</Alert>
+            </div>
             <Button
               type="submit"
               fullWidth

@@ -4,14 +4,14 @@ import DbService from "../../DB/services";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemButton from "@mui/material/ListItemButton";
 
 function Food() {
   let results = [];
   const [mealOfTheDay, setMealOfTheDay] = useState("");
-  const [recipename, setRecipeName] = useState("");
-  const [recipeImg, setRecipeImg] = useState("");
-  const [link, setLink] = useState("");
-  const [category, setCategory] = useState("");
   const [recipes, setRecipes] = useState();
   const [imgUrl, setImgUrl] = useState("");
   const [openRecipes, setOpenRecipes] = useState(false);
@@ -51,67 +51,77 @@ function Food() {
     <>
       <div className="content">
         <div className="foodContainer">
-          <div>
-            <div className="mealOfTheDay">
-              <h1>What's for dinner?</h1>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  randomRecipe();
-                }}
-              >
-                Click here
-              </Button>
-              <h2>{mealOfTheDay.name}</h2>
-              <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
-                <img
-                  className={mealOfTheDay === "" ? "invisible" : "foodImg"}
-                  alt="item"
-                  src={imgUrl === "" ? null : imgUrl}
-                />
-              </a>
-            </div>
-            <Button
-              sx={{
-                position: "absolute",
-              }}
-              variant="outlined"
-              className="showAll"
-              onClick={() => {
-                setOpenRecipes(!openRecipes);
-                if (!openRecipes) {
-                  setOpenRecipesText("Hide all recipes");
-                } else {
-                  setOpenRecipesText("Show all recipes");
-                }
-              }}
-            >
-              {openRecipesText}
-            </Button>
-            <div className={openRecipes ? "editWindow" : "notVisible"}>
-              <div className="listOfRecipes">
-                {recipes?.map((value, index) => {
-                  return (
-                    <a key={index} href={value.link}>
-                      <p>{value.name}</p>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-            <Link to="/signIn">
-              <Button
-                sx={{
-                  position: "absolute",
-                }}
-                variant="outlined"
-                className="addLinkButton"
-              >
-                Add recipe
-              </Button>
-            </Link>
+          <div className="Header">
+            <h1>What's for dinner?</h1>
+          </div>
+          <div className="imgDiv">
+            <h2>{mealOfTheDay.name}</h2>
+            <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
+              <img
+                className={mealOfTheDay === "" ? "invisible" : "foodImg"}
+                alt="item"
+                src={imgUrl === "" ? null : imgUrl}
+              />
+            </a>
+          </div>
+          <Button
+            sx={{
+              width: "10%",
+              justifySelf: "center",
+            }}
+            variant="contained"
+            onClick={() => {
+              randomRecipe();
+            }}
+          >
+            Click here
+          </Button>
+        </div>
+        <Button
+          sx={{
+            position: "absolute",
+          }}
+          variant="outlined"
+          className="showAll"
+          onClick={() => {
+            setOpenRecipes(!openRecipes);
+            if (!openRecipes) {
+              setOpenRecipesText("Hide all recipes");
+            } else {
+              setOpenRecipesText("Show all recipes");
+            }
+          }}
+        >
+          {openRecipesText}
+        </Button>
+        <div className={openRecipes ? "editWindow" : "notVisible"}>
+          <div className="listOfRecipes">
+            <h2>List of recipes</h2>
+            <List>
+              {recipes?.map((value, index) => {
+                return (
+                  <a key={index} href={value.link}>
+                    <ListItem>
+                      <ListItemButton>{value.name}</ListItemButton>
+                    </ListItem>
+                    <Divider />
+                  </a>
+                );
+              })}
+            </List>
           </div>
         </div>
+        <Link to="/signIn">
+          <Button
+            sx={{
+              position: "absolute",
+            }}
+            variant="outlined"
+            className="addLinkButton"
+          >
+            Add recipe
+          </Button>
+        </Link>
       </div>
     </>
   );
