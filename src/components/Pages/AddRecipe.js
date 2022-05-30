@@ -1,7 +1,10 @@
 import "../../App.css";
 import React, { useState, useEffect } from "react";
 import DbService from "../../DB/services";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { MenuItem } from "@mui/material";
 
 function AddRecipe() {
   const [recipename, setRecipeName] = useState("");
@@ -78,26 +81,25 @@ function AddRecipe() {
             />
 
             <p>Kategori:</p>
-            <select
+            <Select
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
             >
-              <option value="">Vælg...</option>
-              <option value="Forret">Forret</option>
-              <option value="Hovedret">Hovedret</option>
-              <option value="Dessert">Dessert</option>
-            </select>
-            <button
+              <MenuItem value="Forret">Forret</MenuItem>
+              <MenuItem value="Hovedret">Hovedret</MenuItem>
+              <MenuItem value="Dessert">Dessert</MenuItem>
+            </Select>
+            <Button
               onClick={() => {
                 upload();
               }}
             >
               Add
-            </button>
+            </Button>
             <Link to="/Food">
-              <button className="addLinkButton">Go back</button>
+              <Button className="addLinkButton">Go back</Button>
             </Link>
           </div>
         </div>

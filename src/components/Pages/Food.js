@@ -15,7 +15,7 @@ function Food() {
   const [recipes, setRecipes] = useState();
   const [imgUrl, setImgUrl] = useState("");
   const [openRecipes, setOpenRecipes] = useState(false);
-  const [openRecipesText, setOpenRecipesText] = useState("Show all recipes");
+  const [openRecipesText, setOpenRecipesText] = useState("Show all");
 
   // use the request-promise library to fetch the HTML from pokemon.org
 
@@ -68,13 +68,15 @@ function Food() {
             sx={{
               width: "10%",
               justifySelf: "center",
+              position: "absolute",
+              bottom: "10%",
             }}
             variant="contained"
             onClick={() => {
               randomRecipe();
             }}
           >
-            Click here
+            Click
           </Button>
         </div>
         <Button
@@ -86,9 +88,9 @@ function Food() {
           onClick={() => {
             setOpenRecipes(!openRecipes);
             if (!openRecipes) {
-              setOpenRecipesText("Hide all recipes");
+              setOpenRecipesText("Hide all");
             } else {
-              setOpenRecipesText("Show all recipes");
+              setOpenRecipesText("Show all");
             }
           }}
         >
