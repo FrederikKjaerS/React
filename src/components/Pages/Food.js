@@ -73,7 +73,7 @@ function Food() {
             justifySelf: "center",
             position: "absolute",
             bottom: "10%",
-            left: "41%",
+            left: "45%",
           }}
           variant="contained"
           onClick={() => {
