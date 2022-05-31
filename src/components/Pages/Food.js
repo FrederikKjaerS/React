@@ -66,21 +66,22 @@ function Food() {
               </a>
             </div>
           </div>
-          <Button
-            sx={{
-              width: "10%",
-              justifySelf: "center",
-              position: "absolute",
-              bottom: "10%",
-            }}
-            variant="contained"
-            onClick={() => {
-              randomRecipe();
-            }}
-          >
-            Click
-          </Button>
         </div>
+        <Button
+          sx={{
+            width: "10%",
+            justifySelf: "center",
+            position: "absolute",
+            bottom: "10%",
+            left: "41%",
+          }}
+          variant="contained"
+          onClick={() => {
+            randomRecipe();
+          }}
+        >
+          Click
+        </Button>
         <Button
           sx={{
             position: "absolute",
