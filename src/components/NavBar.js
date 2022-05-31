@@ -46,6 +46,11 @@ function NavBar() {
                 Joke
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/joke" className="nav-links" onClick={closeMobileMenu}>
+                Møller
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

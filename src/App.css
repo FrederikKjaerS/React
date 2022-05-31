@@ -122,18 +122,23 @@ h2{
   left: 1%;
 }
 
-.foodImg{
-  padding-top: 2%;
-  width: 46%;
-  height: 73%;
-  object-fit: contain;
 
-}
 
 .listOfRecipes{
   text-align:  center;
 }
 
 .imgDiv{
-  height: fit-content;
+  position: absolute;
+  left: 27%;
+  margin: auto;
+  width: 46%;
+  height: 73%;
+  
+  max-height: 10vh;
+}
+
+.imgDiv img{
+  width: 100%;
+  object-fit: contain;
 }

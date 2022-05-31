@@ -54,15 +54,17 @@ function Food() {
           <div className="Header">
             <h1>What's for dinner?</h1>
           </div>
-          <div className="imgDiv">
+          <div className="imgContainer">
             <h2>{mealOfTheDay.name}</h2>
-            <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
-              <img
-                className={mealOfTheDay === "" ? "invisible" : "foodImg"}
-                alt="item"
-                src={imgUrl === "" ? null : imgUrl}
-              />
-            </a>
+            <div className="imgDiv">
+              <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
+                <img
+                  className={mealOfTheDay === "" ? "invisible" : "foodImg"}
+                  alt="item"
+                  src={imgUrl === "" ? null : imgUrl}
+                />
+              </a>
+            </div>
           </div>
           <Button
             sx={{
