@@ -141,4 +141,5 @@ h2{
 .imgDiv img{
   width: 100%;
   object-fit: contain;
+  max-height: 30vw;
 }
