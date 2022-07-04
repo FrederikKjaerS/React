@@ -5,6 +5,7 @@ import Home from "./components/Pages/Home";
 import Joke from "./components/Pages/Joke";
 import Food from "./components/Pages/Food";
 import About from "./components/Pages/About";
+import Tombola from "./components/Pages/Tombola";
 import AddRecipe from "./components/Pages/AddRecipe";
 import SignInPage from "./components/Pages/LogInPage";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/addRecipe" element={<AddRecipe />} />
           <Route path="/signIn" element={<SignInPage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/tombola" element={<Tombola />} />
         </Routes>
       </Router>
     </>

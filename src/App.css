@@ -137,6 +137,14 @@ h2{
      left: 40%;
 }
 
+.tombolaContainer{
+
+  text-align-last: center;
+  position: absolute;
+  top: 15%;
+  left: 40%;
+}
+
 .listOfRecipes{
   text-align:  center;
 }
