@@ -57,6 +57,9 @@ function Food() {
           <div className="imgContainer">
             <h2>{mealOfTheDay.name}</h2>
             <div className="imgDiv">
+              <h4 className={mealOfTheDay === "" ? "invisible" : ""}>
+                Tryk på billedet for opskriften
+              </h4>
               <a href={mealOfTheDay === "" ? "" : mealOfTheDay.link}>
                 <img
                   className={mealOfTheDay === "" ? "invisible" : "foodImg"}
