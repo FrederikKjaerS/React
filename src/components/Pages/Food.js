@@ -15,7 +15,7 @@ function Food() {
   const [recipes, setRecipes] = useState();
   const [imgUrl, setImgUrl] = useState("");
   const [openRecipes, setOpenRecipes] = useState(false);
-  const [openRecipesText, setOpenRecipesText] = useState("Show all");
+  const [openRecipesText, setOpenRecipesText] = useState("Vis alle");
 
   // use the request-promise library to fetch the HTML from pokemon.org
 
@@ -52,7 +52,7 @@ function Food() {
       <div className="content">
         <div className="foodContainer">
           <div className="Header">
-            <h1>What's for dinner?</h1>
+            <h1>Hvad skal du have at spise?</h1>
           </div>
           <div className="imgContainer">
             <h2>{mealOfTheDay.name}</h2>
@@ -80,7 +80,7 @@ function Food() {
             randomRecipe();
           }}
         >
-          Click
+          TRYK
         </Button>
         <Button
           sx={{
@@ -91,9 +91,9 @@ function Food() {
           onClick={() => {
             setOpenRecipes(!openRecipes);
             if (!openRecipes) {
-              setOpenRecipesText("Hide all");
+              setOpenRecipesText("Skjul alle");
             } else {
-              setOpenRecipesText("Show all");
+              setOpenRecipesText("Vis alle");
             }
           }}
         >
@@ -101,7 +101,7 @@ function Food() {
         </Button>
         <div className={openRecipes ? "editWindow" : "notVisible"}>
           <div className="listOfRecipes">
-            <h2>List of recipes</h2>
+            <h2>Liste over opskrifter</h2>
             <List>
               {recipes?.map((value, index) => {
                 return (
@@ -124,7 +124,7 @@ function Food() {
             variant="outlined"
             className="addLinkButton"
           >
-            Add recipe
+            Tilføj opskrift
           </Button>
         </Link>
       </div>
