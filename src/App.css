@@ -122,7 +122,20 @@ h2{
   left: 1%;
 }
 
+.homeContainer{
 
+     text-align-last: center;
+     position: absolute;
+     top: 30%;
+     left: 34%;
+}
+.aboutContainer{
+
+     text-align-last: center;
+     position: absolute;
+     top: 15%;
+     left: 40%;
+}
 
 .listOfRecipes{
   text-align:  center;

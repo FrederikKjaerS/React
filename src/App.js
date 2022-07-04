@@ -4,6 +4,7 @@ import Navbar from "./components/NavBar";
 import Home from "./components/Pages/Home";
 import Joke from "./components/Pages/Joke";
 import Food from "./components/Pages/Food";
+import About from "./components/Pages/About";
 import AddRecipe from "./components/Pages/AddRecipe";
 import SignInPage from "./components/Pages/LogInPage";
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/food" element={<Food />} />
           <Route path="/addRecipe" element={<AddRecipe />} />
           <Route path="/signIn" element={<SignInPage />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Router>
     </>
