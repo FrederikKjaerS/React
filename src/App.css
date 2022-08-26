@@ -125,9 +125,10 @@ h2{
 .homeContainer{
 
      text-align-last: center;
-     position: absolute;
-     top: 30%;
-     left: 34%;
+     width: 80%;
+    margin: auto;
+    padding: 40px;
+
 }
 .aboutContainer{
 

@@ -6,7 +6,7 @@ function Home() {
     <>
       <div className="homeContainer">
         <h1>Velkommen til Kjærs Korner DK</h1>
-        <h2>Her kan du gå på opdagelse i kongens projekter</h2>
+        <h3>Her kan du gå på opdagelse i kongens projekter</h3>
       </div>
     </>
   );
