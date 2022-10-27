@@ -61,6 +61,16 @@ class DbService {
     });
     return recipes;
   };
+  
+  getAllRecipes = async () => {
+    const querySnapshot = await getDocs(collection(db, "recipes"));
+    let recipes = [];
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      recipes.push(doc.data());
+    });
+    return recipes;
+  };
 }
 
 export default new DbService();

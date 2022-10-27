@@ -49,6 +49,16 @@
   gap: 0px 0px; 
 }
 
+.smallImg{
+  max-width: 120px;
+  padding-top: 20px;
+}
+
+.smallListText{
+  text-align: center;
+  margin: auto;
+}
+
 .addBtn{
   position: absolute;
   bottom: 10%;

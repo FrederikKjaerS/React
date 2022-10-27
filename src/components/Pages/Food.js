@@ -12,7 +12,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 function Food() {
   let results = [];
   const [mealOfTheDay, setMealOfTheDay] = useState("");
-  const [recipes, setRecipes] = useState();
+  const [recipes, setRecipes] = useState([]);
+  const [recipeImgs, setRecipeImgs] = useState([]);
   const [imgUrl, setImgUrl] = useState("");
   const [openRecipes, setOpenRecipes] = useState(false);
   const [openRecipesText, setOpenRecipesText] = useState("Vis alle");
@@ -42,6 +43,19 @@ function Food() {
     return Math.floor(Math.random() * max);
   }
 
+  useEffect(() => {
+    recipes?.forEach(async (element) => {
+      await DbService.downloadImage(element.img)
+      .then((result) => {
+       setRecipeImgs(recipeImgs =>[...recipeImgs, {imgUrlSmall:result, name: element.name}])
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    })
+  }, [recipes]);  
+  
+
   function randomRecipe() {
     let meal = recipes[getRandomInt(recipes.length)];
     setMealOfTheDay(meal);
@@ -49,8 +63,14 @@ function Food() {
 
   return (
     <>
-      <div className="content">
-        <div className="foodContainer">
+      <div onClick={() => {
+            console.log(openRecipes);
+            if (openRecipes){
+              setOpenRecipes(!openRecipes);
+              setOpenRecipesText("Vis alle");
+            }}
+          } className="content">
+        <div  className="foodContainer">
           <div className="Header">
             <h1>Hvad skal du have at spise?</h1>
           </div>
@@ -94,7 +114,7 @@ function Food() {
           onClick={() => {
             setOpenRecipes(!openRecipes);
             if (!openRecipes) {
-              setOpenRecipesText("Skjul alle");
+              setOpenRecipesText("X");
             } else {
               setOpenRecipesText("Vis alle");
             }
@@ -107,14 +127,19 @@ function Food() {
             <h2>Liste over opskrifter</h2>
             <List>
               {recipes?.map((value, index) => {
-                return (
-                  <a key={index} href={value.link}>
-                    <ListItem>
-                      <ListItemButton>{value.name}</ListItemButton>
-                    </ListItem>
-                    <Divider />
-                  </a>
-                );
+                if(recipeImgs.length>0){
+                  var result = recipeImgs?.filter(obj => {
+                    return obj.name === value.name
+                  })
+                  return (<a key={index} href={value.link}>
+                    <img className="smallImg"
+                      src={result[0]?.imgUrlSmall} />
+                        <ListItem>
+                          <ListItemButton><p className="smallListText">{value.name}</p></ListItemButton>
+                        </ListItem>
+                        <Divider />
+                      </a>);
+                }
               })}
             </List>
           </div>
@@ -127,7 +152,7 @@ function Food() {
             variant="outlined"
             className="addLinkButton"
           >
-            Tilføj opskrift
+            Tilføj
           </Button>
         </Link>
       </div>
