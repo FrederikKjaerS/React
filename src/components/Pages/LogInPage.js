@@ -1,6 +1,6 @@
 import "../../App.css";
 import React from "react";
-import SignIn from "../../components/SignIn";
+import SignIn from "../SignIn";
 
 function SignInPage() {
   return (
