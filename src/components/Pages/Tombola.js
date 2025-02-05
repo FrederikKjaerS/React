@@ -1,56 +1,41 @@
-import "../../App.css";
-import Button from "@mui/material/Button";
-import { useState, useEffect } from "react";
-import React from "react";
+import '../../App.css'
+import Button from '@mui/material/Button'
+import { useState } from 'react'
+import React from 'react'
 
 function Tombola() {
-  const [jcer, setJcer] = useState("");
+  const [triforker, setTriforker] = useState('')
 
-  const jcArray = [
-    "Kramer",
-    "Jake",
-    "Mause",
-    "Kjær",
-    "Birk",
-    "Minger",
-    "Lusse",
-    "Bigum",
-    "Hastrup",
-    "Thomsi",
-    "Stello",
-    "Juns",
-    "Ju",
-    "Lille",
-  ];
+  const jcArray = ['Frederik', 'Allan', 'Søren', 'Michael', 'Nicolai']
 
   function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * max)
   }
   function roll() {
-    let person = jcArray[getRandomInt(jcArray.length)];
-    setJcer(person);
+    let person = jcArray[getRandomInt(jcArray.length)]
+    setTriforker(person)
   }
 
   return (
     <>
       <div className="tombolaContainer">
-        <h1>Træk en JC'er</h1>
-        <h2 className={jcer === "" ? "invisible" : ""}>{jcer}</h2>
+        <h1>Træk en Triforker</h1>
+        <h2 className={triforker === '' ? 'invisible' : ''}>{triforker}</h2>
         <Button
           sx={{
-            width: "10%",
-            justifySelf: "center",
+            width: '10%',
+            justifySelf: 'center'
           }}
           variant="contained"
           onClick={() => {
-            roll();
+            roll()
           }}
         >
           TRYK
         </Button>
       </div>
     </>
-  );
+  )
 }
 
-export default Tombola;
+export default Tombola
